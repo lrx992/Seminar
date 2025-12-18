@@ -1,8 +1,10 @@
 # Seminar
+Felix Johannes Pettersson Bøgh
+lrx992
 Seminar: Econometric models in financial applications
 
 Contents:
-Paper hand in:
+- nr.pdf (paper hand-in)
 - data (folder containing all figures, tables etc.)
 
 Code:
