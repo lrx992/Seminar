@@ -1,7 +1,7 @@
 # Seminar
-Felix Johannes Pettersson Bøgh
-lrx992
-Seminar: Econometric models in financial applications
+- Felix Johannes Pettersson Bøgh
+- lrx992
+- Seminar: Econometric models in financial applications
 
 Contents:
 - eksamensnummer.pdf (paper hand-in)
