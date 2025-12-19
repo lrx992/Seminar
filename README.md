@@ -8,8 +8,9 @@
   - synthetic_iterations -> laplace, normal
 
 Contents:
-- eksamensnummer.pdf (paper hand-in)
-- data (folder containing all figures, tables etc.)
+- Seminar_Volatility_Clustering_Final.pdf (paper hand-in)
+- real_data (code output)
+- synthetic_iterations (code output)
 - 'GAI declaration lrx992.pdf' (declaration of GAI usage)
 
 Code:
