@@ -594,18 +594,27 @@ for df in [df_SPY_GLD_TLT]:
         raise RuntimeError("No weight columns found for SPY/GLD/TLT in df.")
 
 
-    grey_shades = [ "#7f7f7f", "#3f3f3f", "black"]  # light→dark without white/black
-    custom_greys = mcolors.LinearSegmentedColormap.from_list("custom_greys", grey_shades)
+    # plot each asset weight as a separate line in a 3x1 stack
+    df_weights = df.loc[start_date:, weight_cols].rename(columns=col_map)
 
-    df_weights = df.loc[start_date:, weight_cols].rename(columns=col_map).abs()
-    plt.figure(figsize=(11, 5))
-    ax = df_weights.plot.area(ax=plt.gca(), stacked=True, alpha=1,
-                              cmap=custom_greys, linewidth=0.0)
-    ax.set_xlabel("Date")
-    ax.set_ylabel("Weight")
-    ax.grid(alpha=0.3)
-    ax.set_ylim(-0.05, 1.05)
-    ax.legend(title="Asset", loc="lower right")
+    fig, axes = plt.subplots(len(assets_plot), 1, figsize=(11, 6), sharex=True)
+    if len(assets_plot) == 1:
+        axes = [axes]
+
+    for ax, asset in zip(axes, assets_plot):
+        if asset not in df_weights.columns:
+            ax.set_visible(False)
+            continue
+        w = df_weights[asset].fillna(0)
+        ax.plot(df_weights.index, w, label=asset, color='black', linewidth=1.75)
+        ax.set_ylabel("Weight")
+        ax.set_title(asset)
+        ax.set_ylim(-0.05, 1.05)
+        ax.set_yticks(np.arange(0, 1.05, 0.5))
+        ax.grid(alpha=0.2)
+        #ax.legend(loc="upper right")
+
+    #axes[-1].set_xlabel("Date")
     plt.tight_layout()
     plt.show()
 
@@ -688,3 +697,5 @@ stats_table_SPY_GLD_TLT = pd.DataFrame(all_stats)
 stats_table_SPY_GLD_TLT
 
 
+
+# %%
